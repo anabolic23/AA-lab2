@@ -1,2 +1,0 @@
-This is a sample text that you can use for testing Base64 encoding.
-It contains some characters, numbers, and symbols.

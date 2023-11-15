@@ -6,12 +6,12 @@
 #include <sstream>
 
 class Base64Encoder {
-private: 
+private:
     std::string alphabet;
     std::ifstream inputFile;
-    std::string inputData;
+    std::string inputFileName;
     std::string encoded;
-    std::string comments;
+    std::vector<std::string> comments;
 public:
     Base64Encoder();
     void EncodeTriplet(const std::string& triplet);
@@ -19,21 +19,24 @@ public:
     void EncodeSymbol(const char& symbol);
     void OpenFile(const std::string& inputFileName);
     void CloseFile();
-    std::string GetEncodedData();
+    void AddComment(const std::string& comment);
+    void GetEncodedData(const std::string& outputFileName = "");
     void Encode();
-    std::string GetOutputFileName(const std::string& inputFileName);
 };
 
 class Base64Decoder {
 private:
     std::string alphabet;
+    std::ifstream inputFile;
     std::string decoded;
 public:
     Base64Decoder();
     char GetIndex(char c);
-    void DecodeTriplet(const std::string& triplet);
-    void DecodeDuplet(const std::string& duplet);
-    void DecodeSymbol(const std::string& symbol);
-    void Decode(const std::string& input);
-    std::string GetDecodedData();
+    int DecodeTriplet(const std::string& triplet);
+    int DecodeDuplet(const std::string& duplet);
+    int DecodeSymbol(const std::string& symbol);
+    void OpenFile(const std::string& inputFileName);
+    void CloseFile();
+    void Decode();
+    void GetDecodedData(const std::string& outputFileName = "");
 };
